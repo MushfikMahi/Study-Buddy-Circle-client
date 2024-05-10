@@ -5,6 +5,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Root from "../Root";
 import Profile from "../Profile/Profile";
+import AddAssignment from "../Assignment/AddAssignment";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: '/profile',
           element: <Profile></Profile>
+        },
+        {
+          path: '/addassignments',
+          element: <AddAssignment></AddAssignment>
         }
       ],
     },

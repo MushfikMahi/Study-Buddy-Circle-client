@@ -46,7 +46,7 @@ const Navbar = () => {
             <li>
             <NavLink
             style={({ isActive }) => ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
-             to={"/createassignments"}>Create Assignments</NavLink>
+             to={"/addassignments"}>Create Assignments</NavLink>
           </li>
           <li>
             <NavLink
