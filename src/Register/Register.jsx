@@ -122,7 +122,7 @@ const Register = () => {
               />
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 relative'>
               <div className='flex justify-between'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -137,8 +137,14 @@ const Register = () => {
                 autoComplete='current-password'
                 name='password'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                type='password'
+                type={showPass ? "text" : "password"}
               />
+              <span
+                    className="absolute right-3 bottom-4 text-black "
+                    onClick={() => setShowPass(!showPass)}
+                  >
+                    {showPass ? <FaRegEyeSlash /> : <FaRegEye />}
+                  </span>
             </div>
             <div className='mt-6'>
               <button
