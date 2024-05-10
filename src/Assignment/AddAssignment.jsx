@@ -18,14 +18,14 @@ const AddAssignment = () => {
     const title = form.title.value
     const email = form.email.value
     const deadline = startDate
-    const category = form.category.value
+    const difficulty_level = form.difficulty_level.value
     const thumbnail_url = form.thumbnail_url.value
     const marks = parseFloat(form.marks.value)
     const description = form.description.value
     const jobData = {
       title,
       deadline,
-      category,
+      difficulty_level,
       thumbnail_url,
       marks,
       description,
@@ -35,7 +35,17 @@ const AddAssignment = () => {
         photo: user?.photoURL,
       },
     }
-    
+    try {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/assignments`,
+          jobData
+        )
+        console.log(data)
+        toast.success('Assignment Created Successfully!')
+      //   navigate('/my-created-assignments')
+      } catch (err) {
+        console.log(err)
+      }
   }
 
 
@@ -87,12 +97,12 @@ const AddAssignment = () => {
             </div>
 
             <div className='flex flex-col gap-2 '>
-              <label className='text-gray-700 ' htmlFor='category'>
+              <label className='text-gray-700 ' htmlFor='difficulty_level'>
                 Difficulty Lavel
               </label>
               <select
-                name='category'
-                id='category'
+                name='difficulty_level'
+                id='difficulty_level'
                 className='border p-2 rounded-md'
               >
                 <option value='Easy'>Easy</option>

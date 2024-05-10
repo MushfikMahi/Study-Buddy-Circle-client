@@ -6,6 +6,7 @@ import Register from "../Register/Register";
 import Root from "../Root";
 import Profile from "../Profile/Profile";
 import AddAssignment from "../Assignment/AddAssignment";
+import Assignments from "../Assignment/Assignments";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
         {
           path: '/addassignments',
           element: <AddAssignment></AddAssignment>
+        },
+        {
+          path: '/assignments',
+          element: <Assignments></Assignments>,
+          loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/assignments`)
         }
       ],
     },
