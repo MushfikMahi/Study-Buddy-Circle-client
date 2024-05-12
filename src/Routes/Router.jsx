@@ -63,8 +63,9 @@ const router = createBrowserRouter([
           element: <PendingPage></PendingPage>
         },
         {
-          path: '/marking',
-          element: <MarkingPage></MarkingPage>
+          path: '/marking/:id',
+          element: <MarkingPage></MarkingPage>,
+          loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/marking/${params.id}`)
         }
       ],
     },
