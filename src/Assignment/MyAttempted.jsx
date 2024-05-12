@@ -68,9 +68,9 @@ const MyAttempted = () => {
                       Status
                     </th>
 
-                    <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
+                    {/* <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
                       Actions
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 {
@@ -85,25 +85,31 @@ const MyAttempted = () => {
                     </td>
 
                     <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                      {assignment?.marks}
+                      {assignment?.gainedMark? assignment?.gainedMark: 0}/{assignment?.marks}
                     </td>
                     <td className='px-4 py-4 text-sm whitespace-nowrap'>
                       <div className='flex items-center gap-x-2'>
-                        <p
-                          className='px-3 py-1 rounded-full text-blue-500 bg-blue-100/60
-                           text-xs'
-                        >
-                          {assignment?.difficulty_level}
+                        <p>
+                        <span className='text-[12px] uppercase'>
+                          <span className={assignment?.difficulty_level === 'Easy'
+                            ? 'text-blue-800 px-3 rounded-full py-1 bg-blue-200'
+                            : assignment?.difficulty_level === 'Medium'
+                            ? 'text-yellow-800 px-3 rounded-full py-1 bg-yellow-200'
+                            : assignment?.difficulty_level === 'Hard'
+                            ? 'text-red-800 px-3 rounded-full py-1 bg-red-200'
+                            : ''}>{assignment?.difficulty_level}</span>
+                      </span>
+                          {/* {assignment?.difficulty_level} */}
                         </p>
                       </div>
                     </td>
                     <td className='px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap'>
-                      <div className='inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 text-yellow-500'>
-                        <span className='h-1.5 w-1.5 rounded-full bg-yellow-500'></span>
+                      <div className={assignment?.status === 'Pending'?'inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 text-yellow-500':'inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-sky-100/60 text-blue-500'}>
+                        <span className={assignment?.status === 'Pending'? 'h-1.5 w-1.5 rounded-full bg-yellow-500': 'h-1.5 w-1.5 rounded-full bg-sky-500'}></span>
                         <h2 className='text-sm font-normal '>{assignment?.status}</h2>
                       </div>
                     </td>
-                    <td className='px-4 py-4 text-sm whitespace-nowrap'>
+                    {/* <td className='px-4 py-4 text-sm whitespace-nowrap'>
                       <button
                         title='Mark Complete'
                         className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none disabled:cursor-not-allowed'
@@ -123,7 +129,7 @@ const MyAttempted = () => {
                           />
                         </svg>
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 </tbody>)
                 }

@@ -57,7 +57,7 @@ const UpdateAssignments = () => {
         )
         console.log(data)
         toast.success('Assignment Updated Successfully!')
-      //   navigate('/my-created-assignments')
+        navigate('/assignments')
       } catch (err) {
         console.log(err)
       }

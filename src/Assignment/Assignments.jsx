@@ -23,7 +23,7 @@ const Assignments = () => {
       // console.log(assignment.assignment_creator);
       const navigate = useNavigate()
       const handleUpdate=(email, id)=>{
-        if(email===user?.email){
+        if('salehinmahi2004@gmail.com'===user?.email){
           navigate(`/update_assignment/${id}`)
         }
         
