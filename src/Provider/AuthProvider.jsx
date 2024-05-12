@@ -46,7 +46,8 @@ const gitHubCreateUser = () => {
           setLoading(false);
           if(currentUser){
             const loggedUser = {email: currentUser.email}
-            axios.post(`${import.meta.env.VITE_API_URL}/jwt`,loggedUser, {withCredentials:true})
+            axios.post(`${import.meta.env.VITE_API_URL}/jwt`,loggedUser, 
+            {withCredentials:true})
             .then(res=>{
               console.log(res.data);
             })
@@ -57,9 +58,12 @@ const gitHubCreateUser = () => {
         };
       }, []);
 
-      const logOut = () => {
+      const logOut = async() => {
         setLoading(true);
-        signOut(auth);
+        await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+          withCredentials:true
+        })
+        return signOut(auth);
       };
 
 
