@@ -5,7 +5,7 @@ const MyAttempted = () => {
     const {user} = useContext(AuthContext)
     const [assignments, setAssignments] = useState([])
     useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/submitted/${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}/submitted/${user?.email}`, {credentials:'include'})
         .then(res=>res.json())
         .then(data=>{
           setAssignments(data);

@@ -23,11 +23,9 @@ const Assignments = () => {
       // console.log(assignment.assignment_creator);
       const navigate = useNavigate()
       const handleUpdate=(email, id)=>{
-        if('salehinmahi2004@gmail.com'===user?.email){
-          navigate(`/update_assignment/${id}`)
-        }
-        
-        else return toast.error('Action not permitted')
+        // if('salehinmahi2004@gmail.com'===user?.email){}
+        navigate(`/update_assignment/${id}`)
+        // else return toast.error('Action not permitted')
         
       }
       
