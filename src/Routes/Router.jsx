@@ -10,6 +10,8 @@ import Assignments from "../Assignment/Assignments";
 import DetailAssignments from "../Assignment/DetailAssignments";
 import MyAttempted from "../Assignment/MyAttempted";
 import UpdateAssignments from "../Assignment/UpdateAssignments";
+import PendingPage from "../Assignment/PendingPage";
+import MarkingPage from "../Assignment/MarkingPage";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
           element: <UpdateAssignments></UpdateAssignments>,
           loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/update_assignment/${params.id}`)
         },
+        {
+          path: '/pendingassignments',
+          element: <PendingPage></PendingPage>
+        },
+        {
+          path: '/marking',
+          element: <MarkingPage></MarkingPage>
+        }
       ],
     },
   ]);
