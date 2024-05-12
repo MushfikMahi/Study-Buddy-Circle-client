@@ -1,5 +1,10 @@
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Provider/AuthProvider';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 const AssignmentsCard = ({assignment}) => {
+  const {user}= useContext(AuthContext)
     const {
         _id,
         title,
@@ -9,6 +14,60 @@ const AssignmentsCard = ({assignment}) => {
         thumbnail_url,
         marks,
       } = assignment || {}
+      // console.log(assignment.assignment_creator);
+      const navigate = useNavigate()
+      const handleUpdate=(email)=>{
+        if(email===user?.email){
+          navigate(`/update_assignment/${_id}`)
+        }
+        
+        else return toast.error('Action not permitted')
+        
+      }
+
+
+      
+      const [control, setControl] = useState(false)
+      const handleDelete=(email)=>{
+        if(email===user?.email){
+          const handleDelete = (id)=>{
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`https://paper-crafts-and-glass-art-server.vercel.app/delete/${id}`,{
+                        method:'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.deletedCount > 0) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your Craft has been deleted.',
+                                    'success'
+                                )
+                                setControl(!control)
+                            }
+                        })
+    
+                }
+            })
+    }
+        }
+        
+        else return toast.error('Action not permitted')
+        
+      }
+
+
+
     return (
         <div
       
@@ -48,8 +107,8 @@ const AssignmentsCard = ({assignment}) => {
       <hr />
       <div className='flex justify-between my-5'>
         <Link to={`/assignment/${_id}`} className='btn'>View Assignments</Link>
-        <Link to={`/update_assignment/${_id}`} className='btn'>Update</Link>
-        <button className='btn'>Delete</button>
+        <button onClick={()=>handleUpdate(assignment?.assignment_creator.email)} className='btn'>Update</button>
+        <button onClick={()=>handleDelete(assignment?.assignment_creator.email)} className='btn'>Delete</button>
       </div>
     </div>
     );

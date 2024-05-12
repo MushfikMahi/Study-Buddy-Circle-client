@@ -25,8 +25,8 @@ const DetailAssignments = () => {
 
       const {email, name, photo} = assignment_creator || {}
 
-      const id = _id
-
+      const assignmentId = _id
+      const status = 'Pending'
       const handleLink = async(event) => {
         event.preventDefault()
         if(user?.email === email) return toast.error('Action not permitted')
@@ -35,8 +35,10 @@ const DetailAssignments = () => {
         const note = form.note.value;
         const takerEmail = user?.email
         const takerName = user?.displayName
-        const submit = {id, link, note, takerEmail, takerName};
-
+        const creator = {name, email}
+        const submit = {assignmentId,marks, link,difficulty_level, note, title, deadline,status,
+          takerEmail, takerName, creator};
+          console.log(submit);
         try {
           const { data } = await axios.post(
             `${import.meta.env.VITE_API_URL}/submitted`,
