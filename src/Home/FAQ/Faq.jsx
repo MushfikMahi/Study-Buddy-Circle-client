@@ -3,7 +3,7 @@ const Faq = () => {
     return (
         <div className="flex flex-col md:flex-row">
             <div className="flex-1">
-                <img src="https://img.freepik.com/free-vector/thoughtful-woman-with-laptop-looking-big-question-mark_1150-39362.jpg?t=st=1714355619~exp=1714359219~hmac=607a71f32854b17179de922551194ca217cb2e1fb229beb78b3edb94c348415d&w=996" alt="FAQ" />
+                <img src="https://img.freepik.com/free-vector/curiosity-people-concept-illustration_114360-14303.jpg?t=st=1715594015~exp=1715597615~hmac=792065e5ff31f9b43a7f898fe62b1977192079d8d7635aaabed49f196501b079&w=996" alt="FAQ" />
             </div>
             <div className="flex-1 space-y-5">
             

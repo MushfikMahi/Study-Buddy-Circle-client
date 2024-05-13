@@ -19,11 +19,11 @@ const Profile = () => {
   <div className="flex flex-col items-center space-y-5">
      <img
        className="h-32 rounded-full border-[#007BA7] border-4"
-       src={user.photoURL}
+       src={user?.photoURL}
        alt=""
      />
-     <h3 className="text-3xl font-bold">Name : {user.displayName}</h3>
-     <p className="text-xl">Email : {user.email}</p>
+     <h3 className="text-3xl font-bold">Name : {user?.displayName}</h3>
+     <p className="text-xl">Email : {user?.email}</p>
    </div> 
 
 <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>

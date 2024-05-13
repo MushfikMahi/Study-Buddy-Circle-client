@@ -68,10 +68,10 @@ const Assignments = () => {
         <div className="pt-24 container mx-auto">
             {
                 assignments?.map(assignment=><div key={assignment._id}
-                    className='w-full px-4 py-3 my-5 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'
+                    className='w-full px-4 py-3 my-5 rounded-md shadow-md hover:scale-[1.05] transition-all'
                   >
                     <div className='flex items-center justify-between'>
-                      <span className='text-xs font-bold text-gray-800 '>
+                      <span className='text-xs font-bold '>
                         Deadline: {new Date(assignment?.deadline).toLocaleDateString()}
                       </span>
                       <span className='text-[12px] uppercase font-bold'>
@@ -86,20 +86,25 @@ const Assignments = () => {
                     </div>
               <div className='flex flex-col md:flex-row gap-5 my-5'>
               <div className='w-[250px]'>
-                  <img className='rounded-2xl' src='https://img.freepik.com/free-photo/document-marketing-strategy-business-concept_53876-132231.jpg?t=st=1715348731~exp=1715352331~hmac=cfb5bfee8a9c6790e0197c33cbef134a686d6661422bcaba9d5e10d3cefd1334&w=996' alt="" />
+                  <img className='rounded-2xl' src={assignment?.thumbnail_url} alt="" />
               </div>
-                    <div className='mb-5'>
-                      <h1 className='mt-2 text-lg font-semibold text-gray-800 '>
+                    <div className='mb-5 w-full'>
+                      <h1 className='mt-2 text-lg font-semibold '>
                         {assignment?.title}
                       </h1>
               
-                      <p title={assignment?.description} className='mt-2 text-sm text-gray-600 '>
+                      <p title={assignment?.description} className='mt-2 text-sm  '>
                         {assignment?.description.substring(0, 70)}...
                       </p>
-                      <p className='mt-2 text-sm font-bold text-gray-600 '>
+                      <p className='mt-2 text-sm font-bold '>
                         Mark: {assignment?.marks}
                       </p>
+                      <div className='flex justify-end items-center gap-3'>
+                        <h3 className="font-bold">{assignment?.assignment_creator.name}</h3>
+                  <img className='rounded-full h-16 w-16' src={assignment?.assignment_creator.photo} alt="" />
+              </div>
                     </div>
+                    
               </div>
                     <hr />
                     <div className='flex justify-between my-5'>
