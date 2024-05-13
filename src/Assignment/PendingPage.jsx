@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PendingPage = () => {
     const [assignments, setAssignments] = useState([])
@@ -15,7 +15,7 @@ const PendingPage = () => {
         navigate(`/marking/${id}`)
     }
     return (
-        <section className='container px-4 mx-auto pt-24'>
+        <section className='container px-4 mx-auto pt-24 min-h-[80vh]'>
       <div className='flex items-center gap-x-3'>
         <h2 className='text-lg font-medium text-gray-800 '>Pending Assignments</h2>
 

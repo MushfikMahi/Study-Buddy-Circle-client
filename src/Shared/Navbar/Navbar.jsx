@@ -100,31 +100,40 @@ const Navbar = () => {
 </label>
   {user ? (
     <div className="flex flex-row-reverse items-center gap-3">
+      <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
       <div className="w-10 rounded-full">
           <img id="clickable" className="w-10 h-10 rounded-full border-[#007BA7] border-4" title={user.displayName} alt="user" src={user.photoURL} />
       </div>
-      <Tooltip anchorSelect="#clickable" clickable>
-      <div className="flex flex-col">
-      <button
-        onClick={handleLogOut}
-        className="link text-white hover:bg-[#007BA7] p-2 rounded-xl"
-      >
-        Log Out
-      </button>
-      <Link
+      </div>
+      <ul tabIndex={0} className="space-y-3 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        
+        <li className="text-gray-600 hover:text-white">
+        <Link
         to={"/myattemptedassignments"}
-        className="link text-white hover:bg-[#007BA7] p-2 rounded-xl"
+        className=" hover:bg-[#007BA7] p-2 rounded-xl"
       >
         My Attempted Assignments
       </Link>
-      <Link
+          </li>
+        <li className="text-gray-600 hover:text-white">
+        <Link
         to={"/profile"}
-        className="link text-white hover:bg-[#007BA7] p-2 rounded-xl"
+        className="  hover:bg-[#007BA7] p-2 rounded-xl"
       >
         {user.displayName}
       </Link>
-      </div>
-      </Tooltip>
+          </li>
+          <li className="text-gray-600 hover:text-white">
+        <button
+        onClick={handleLogOut}
+        className="btn hover:text-white hover:bg-[#007BA7] p-2 rounded-xl"
+      >
+        Log Out
+      </button>
+        </li>
+      </ul>
+    </div>
     </div>
   ) : (
     <div className="flex items-center gap-5">

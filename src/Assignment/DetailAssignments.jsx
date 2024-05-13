@@ -74,7 +74,7 @@ const DetailAssignments = () => {
     <hr />
     <div className="flex justify-between items-center">
         <h3><span className="font-bold">Difficulty Level :</span> {difficulty_level}</h3>
-        <button onClick={onOpenModal} className="btn">Take Assignment</button>
+        <button onClick={onOpenModal} className="btn bg-[#007BA7] text-white">Take Assignment</button>
       <Modal open={open} onClose={onCloseModal} center>
         <div className="p-5 space-y-3">
         <h3 className="text-xl font-bold">Submit Your Assignment</h3>
@@ -103,7 +103,7 @@ const DetailAssignments = () => {
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
       </div>
-      <button className="btn w-full mt-3">Submit</button>
+      <button className="btn w-full mt-3 bg-[#007BA7] text-white">Submit</button>
       </form>
         </div>
       </Modal>

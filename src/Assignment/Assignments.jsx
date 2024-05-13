@@ -101,16 +101,16 @@ const Assignments = () => {
                       </p>
                       <div className='flex justify-end items-center gap-3'>
                         <h3 className="font-bold">{assignment?.assignment_creator.name}</h3>
-                  <img className='rounded-full h-16 w-16' src={assignment?.assignment_creator.photo} alt="" />
+                  <img className='rounded-full h-14 w-14 border-4 border-[#007BA7]' src={assignment?.assignment_creator.photo} alt={assignment?.assignment_creator.name} />
               </div>
                     </div>
                     
               </div>
                     <hr />
                     <div className='flex justify-between my-5'>
-                      <Link to={`/assignment/${assignment?._id}`} className='btn'>View Assignments</Link>
-                      <button onClick={()=>handleUpdate(assignment?.assignment_creator.email, assignment?._id)} className='btn'>Update</button>
-                      <button onClick={()=>handleDelete(assignment?.assignment_creator.email, assignment?._id)} className='btn'>Delete</button>
+                      <Link to={`/assignment/${assignment?._id}`} className='btn bg-[#007BA7] text-white'>View Assignments</Link>
+                      <button onClick={()=>handleUpdate(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-[#007BA7] text-white'>Update</button>
+                      <button onClick={()=>handleDelete(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-red-400 text-white'>Delete</button>
                     </div>
                   </div>)
             }

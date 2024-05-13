@@ -146,7 +146,7 @@ const AddAssignment = () => {
             ></textarea>
           </div>
           <div className='flex justify-end mt-6'>
-            <button className='px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
+            <button className='btn bg-[#007BA7] text-white leading-5 transition-colors duration-300 transhtmlForm '>
               Create
             </button>
           </div>
