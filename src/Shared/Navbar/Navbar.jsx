@@ -40,19 +40,21 @@ const Navbar = () => {
             style={({ isActive }) => ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
              to={"/assignments"}>Assignments</NavLink>
           </li>
-            <>
+            {
+              user&&<>
+              <li>
+              <NavLink
+              style={({ isActive }) => ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
+               to={"/addassignments"}>Create Assignments</NavLink>
+            </li>
             <li>
-            <NavLink
-            style={({ isActive }) => ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
-             to={"/addassignments"}>Create Assignments</NavLink>
-          </li>
-          <li>
-            <NavLink
-            style={({ isActive }) => 
-            ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
-             to={"/pendingassignments"}>Pending Assignments</NavLink>
-          </li>
-          </>
+              <NavLink
+              style={({ isActive }) => 
+              ({color: isActive ? "#fff" : "#007BA7", backgroundColor: isActive && "#007BA7"})}
+               to={"/pendingassignments"}>Pending Assignments</NavLink>
+            </li>
+            </>
+            }
         </>
       );
     return (

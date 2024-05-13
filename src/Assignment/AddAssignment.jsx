@@ -2,7 +2,6 @@ import { useContext, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useNavigate } from 'react-router-dom'
-
 import axios from 'axios'
 import { AuthContext } from '../Provider/AuthProvider'
 import toast from 'react-hot-toast'
@@ -11,49 +10,69 @@ const AddAssignment = () => {
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(new Date());
+  const [showToast, setShowToast] = useState(false);
+  const handleDateChange = date => {
+    const today = new Date();
+    const oneDayLater = new Date();
+    oneDayLater.setDate(today.getDate() + 1);
+
+    if (date < oneDayLater) {
+      setShowToast(true);
+    } else {
+      setShowToast(false);
+      setStartDate(date);
+    }
+  };
+
+  
 
   const handleFormSubmit = async e => {
     e.preventDefault()
-    const form = e.target
-    const title = form.title.value
-    const email = form.email.value
-    const deadline = startDate
-    const difficulty_level = form.difficulty_level.value
-    const thumbnail_url = form.thumbnail_url.value
-    const marks = parseFloat(form.marks.value)
-    const description = form.description.value
-    const assignment = {
-      title,
-      deadline,
-      difficulty_level,
-      thumbnail_url,
-      marks,
-      description,
-      assignment_creator: {
-        email,
-        name: user?.displayName,
-        photo: user?.photoURL,
-      },
-    }
-    try {
-        const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/assignments`,
-          assignment
-        )
-        console.log(data)
-        toast.success('Assignment Created Successfully!')
-      //   navigate('/my-created-assignments')
-      } catch (err) {
-        console.log(err)
+    if(showToast){
+      return toast.error('You must select a date at least one day later than today.')
+    }  else {
+      const form = e.target
+      const title = form.title.value
+      const email = form.email.value
+      const deadline = startDate
+      const difficulty_level = form.difficulty_level.value
+      const thumbnail_url = form.thumbnail_url.value
+      const marks = parseFloat(form.marks.value)
+      const description = form.description.value
+      const assignment = {
+        title,
+        deadline,
+        difficulty_level,
+        thumbnail_url,
+        marks,
+        description,
+        assignment_creator: {
+          email,
+          name: user?.displayName,
+          photo: user?.photoURL,
+        },
       }
+      try {
+          const { data } = await axios.post(
+            `${import.meta.env.VITE_API_URL}/assignments`,
+            assignment
+          )
+          console.log(data)
+          toast.success('Assignment Created Successfully!')
+          navigate('/assignments')
+        } catch (err) {
+          console.log(err)
+        }
+    }
+    
   }
 
 
 
 
     return (
-        <div className='flex justify-center items-center min-h-[calc(100vh-306px)] mb-12'>
+        <div className='flex justify-center pt-24 items-center min-h-[calc(100vh-306px)] mb-12'>
       <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>
         <h2 className='text-lg font-semibold text-gray-700 capitalize '>
           Create A Assignments
@@ -93,7 +112,8 @@ const AddAssignment = () => {
               <DatePicker
                 className='border p-2 rounded-md'
                 selected={startDate}
-                onChange={date => setStartDate(date)}
+        onChange={handleDateChange}
+        // minDate={new Date()}
               />
             </div>
 

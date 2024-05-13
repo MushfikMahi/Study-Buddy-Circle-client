@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { useContext, useState } from "react";
@@ -24,7 +24,7 @@ const DetailAssignments = () => {
       } = assignment || {}
 
       const {email, name, photo} = assignment_creator || {}
-
+const navigate = useNavigate()
       const assignmentId = _id
       const status = 'Pending'
       const handleLink = async(event) => {
@@ -46,7 +46,7 @@ const DetailAssignments = () => {
           )
           console.log(data)
           toast.success('Assignment Submitted Successfully!')
-        //   navigate('/my-created-assignments')
+          navigate('/assignments')
         } catch (err) {
           console.log(err)
         }

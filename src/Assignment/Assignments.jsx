@@ -1,10 +1,9 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import AssignmentsCard from "./AssignmentsCard";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import { IoIosArrowDown } from "react-icons/io";
 
 
 const Assignments = () => {
@@ -62,12 +61,41 @@ const Assignments = () => {
         }
         
         else return toast.error('Action not permitted')
-        
       }
+
+      const [filter, setFilter] = useState('All');
+
+      const filteredAssignments = () => {
+          if (filter === 'Easy') {
+            return assignments.filter(assignment => assignment.difficulty_level === 'Easy');
+          } else if (filter === 'Medium') {
+            return assignments.filter(assignment => assignment.difficulty_level === 'Medium');
+          } else if (filter === 'Hard') {
+            return assignments.filter(assignment => assignment.difficulty_level === 'Hard');
+          } else {
+            return assignments;
+          }
+        };
+
+
+
+
     return (
         <div className="pt-24 container mx-auto">
+          <div className="flex justify-center my-5">
+<div className="dropdown ">
+
+<div tabIndex={0} role="button" className="m-1 pr-8 relative btn bg-[#007BA7] text-white">Filter by Difficullty <IoIosArrowDown className="absolute text-white text-xl right-2 top-4" /></div>
+  <ul tabIndex={0} className="dropdown-content menu z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+    <li className="hover:bg-[#007BA7] hover:text-white rounded-xl" onClick={() => setFilter('All')}><a>All</a></li>
+    <li className="hover:bg-[#007BA7] hover:text-white rounded-xl" onClick={() => setFilter('Easy')}><a>Easy</a></li>
+    <li className="hover:bg-[#007BA7] hover:text-white rounded-xl" onClick={() => setFilter('Medium')}><a>Medium</a></li>
+    <li className="hover:bg-[#007BA7] hover:text-white rounded-xl" onClick={() => setFilter('Hard')}><a>Hard</a></li>
+  </ul>
+</div>
+</div>
             {
-                assignments?.map(assignment=><div key={assignment._id}
+                filteredAssignments().map(assignment=><div key={assignment._id}
                     className='w-full px-4 py-3 my-5 rounded-md shadow-md hover:scale-[1.05] transition-all'
                   >
                     <div className='flex items-center justify-between'>
@@ -85,10 +113,10 @@ const Assignments = () => {
                       </span>
                     </div>
               <div className='flex flex-col md:flex-row gap-5 my-5'>
-              <div className='w-[250px]'>
+              <div className='md:w-[250px]'>
                   <img className='rounded-2xl' src={assignment?.thumbnail_url} alt="" />
               </div>
-                    <div className='mb-5 w-full'>
+                    <div className='mb-5 w-full space-y-2'>
                       <h1 className='mt-2 text-lg font-semibold '>
                         {assignment?.title}
                       </h1>
@@ -99,19 +127,25 @@ const Assignments = () => {
                       <p className='mt-2 text-sm font-bold '>
                         Mark: {assignment?.marks}
                       </p>
-                      <div className='flex justify-end items-center gap-3'>
+                      <div className='flex justify-end items-center gap-3 pb-8'>
                         <h3 className="font-bold">{assignment?.assignment_creator.name}</h3>
                   <img className='rounded-full h-14 w-14 border-4 border-[#007BA7]' src={assignment?.assignment_creator.photo} alt={assignment?.assignment_creator.name} />
               </div>
-                    </div>
-                    
-              </div>
-                    <hr />
-                    <div className='flex justify-between my-5'>
+              <hr />
+                    <div className='flex justify-between'>
                       <Link to={`/assignment/${assignment?._id}`} className='btn bg-[#007BA7] text-white'>View Assignments</Link>
                       <button onClick={()=>handleUpdate(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-[#007BA7] text-white'>Update</button>
                       <button onClick={()=>handleDelete(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-red-400 text-white'>Delete</button>
                     </div>
+                    </div>
+                    
+              </div>
+                    {/* <hr />
+                    <div className='flex justify-between my-5'>
+                      <Link to={`/assignment/${assignment?._id}`} className='btn bg-[#007BA7] text-white'>View Assignments</Link>
+                      <button onClick={()=>handleUpdate(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-[#007BA7] text-white'>Update</button>
+                      <button onClick={()=>handleDelete(assignment?.assignment_creator.email, assignment?._id)} className='btn bg-red-400 text-white'>Delete</button>
+                    </div> */}
                   </div>)
             }
         </div>

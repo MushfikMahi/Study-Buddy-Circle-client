@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const MarkingPage = () => {
     const assignment = useLoaderData()
     console.log(assignment);
-
+const navigate = useNavigate()
 
     const handleFormSubmit = async e => {
         e.preventDefault()
@@ -26,7 +26,7 @@ const MarkingPage = () => {
             )
             console.log(data)
             toast.success('Assignment Feedback Sended Successfully!')
-          //   navigate('/my-created-assignments')
+            navigate('/pendingassignments')
           } catch (err) {
             console.log(err)
           }
@@ -34,8 +34,9 @@ const MarkingPage = () => {
 
 
     return (
-        <div className="container mx-auto pt-24">
+        <div className="container mx-auto space-y-5 pt-24">
             <iframe src={assignment?.link} width="100%" height="600px"></iframe>
+            <p><span className="font-bold">Note :</span> {assignment?.note}</p>
             <form onSubmit={handleFormSubmit}>
       <div>
       <label className='text-gray-700' htmlFor='mark'>
@@ -61,7 +62,7 @@ const MarkingPage = () => {
                 className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
               />
       </div>
-      <button className="btn w-full mt-3">Submit</button>
+      <button className="btn w-full mt-3 bg-[#007BA7] text-white">Submit</button>
       </form>
         </div>
     );

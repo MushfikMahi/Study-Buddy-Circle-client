@@ -22,7 +22,7 @@ const Profile = () => {
        src={user?.photoURL}
        alt=""
      />
-     <h3 className="text-3xl font-bold">Name : {user?.displayName}</h3>
+     <h3 className="text-xl font-bold">Name : {user?.displayName}</h3>
      <p className="text-xl">Email : {user?.email}</p>
    </div> 
 

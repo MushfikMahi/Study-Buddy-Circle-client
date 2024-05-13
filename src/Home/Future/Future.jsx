@@ -1,4 +1,30 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+
+
+const containerFor = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
+
+
 
 const Future = () => {
 
@@ -11,18 +37,27 @@ const Future = () => {
         })
     },[])
 
-
+    
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <motion.article
+      initial="hidden"
+      animate="visible"
+      exit={{ opacity: 0, transition: { duration: 1 } }}
+      variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+    >
+        <motion.div variants={containerFor}
+    initial="hidden"
+    animate="visible" className="grid grid-cols-1 md:grid-cols-2 md:gap-10 containerFor">
             {
-                futures.map((future, idx)=><div className="shadow-xl p-10 rounded-xl relative" key={future?._id}>
+                futures.map((future, idx)=><motion.div variants={item} className="shadow-xl item p-10 m-10 md:m-0 rounded-xl relative" key={future?._id}>
                     <h3 className="text-xl font-bold">{future?.title}</h3>
                     <p>{future?.description}</p>
                     <p className="bg-[#007BA7] btn-circle absolute top-[40%] -left-6 flex items-center justify-center text-white">{idx+1}</p>
-                </div>)
+                </motion.div>)
             }
-        </div>
+        </motion.div>
+        </motion.article>
     );
 };
 
