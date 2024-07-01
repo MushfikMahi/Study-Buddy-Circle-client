@@ -13,7 +13,6 @@ import UpdateAssignments from "../Assignment/UpdateAssignments";
 import PendingPage from "../Assignment/PendingPage";
 import MarkingPage from "../Assignment/MarkingPage";
 import Private from "../Private/Private"
-import Motion from "../Motion";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -68,10 +67,6 @@ const router = createBrowserRouter([
           element: <MarkingPage></MarkingPage>,
           loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/marking/${params.id}`)
         },
-        {
-          path:'/motion',
-          element:  <Motion></Motion>
-        }
       ],
     },
   ]);
